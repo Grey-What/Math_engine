@@ -4,6 +4,7 @@
 #include <cctype>
 #include <string>
 #include <vector>
+#include "tokenizer.h"
 using namespace std;
 
 Tokenizer::Tokenizer(const string& str) : input(str), pos(0) {}
@@ -50,7 +51,9 @@ TokenType Tokenizer::readLetter(string& buffer) {
   return TokenType::VARIABLE;
 }
 
-TokenType checkSymbol() {
+
+TokenType Tokenizer::checkSymbol(string& buffer)
+{
   char c = get();
   buffer.clear();
   buffer.push_back(c);
@@ -107,7 +110,7 @@ vector<Token> Tokenizer::tokenize() {
     }
     if (SYMBOL_TOKENS.find(peek()) != string::npos)
     {
-      type = checkSymbol();
+      type = checkSymbol(buffer);
       tokens.push_back(Token(type, buffer));
     }
   }

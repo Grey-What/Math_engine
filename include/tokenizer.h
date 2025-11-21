@@ -7,9 +7,11 @@
 #include "token.h"
 using namespace std;
 
-extern const string SINGLE_CHAR_TOKENS = "+-*/^()";
-extern const string FUNCTION_TOKENS[8] = {"sin", "cos", "tan", "log", "ln", "sqrt",
+extern const int FUNCTION_TOKEN_SIZE = 8;
+extern const string FUNCTION_TOKENS[FUNCTION_TOKEN_SIZE] = {"sin", "cos", "tan", "log", "ln", "sqrt",
                                  "abs", "exp"};
+extern const string SYMBOL_TOKENS = "+-*/^()";
+
 class Tokenizer
 {
   private:
@@ -19,9 +21,9 @@ class Tokenizer
     char peek(); // view current character
     char get(); // consume current character and move forward
     void skipWhiteSpace(); //Skip white space
-    int readNumber( string& buffer); // Reads a number from input
-    int readLetter( string& buffer); // reads letters from input
-    int checkSymbol(); //check the type of symbol in input
+    TokenType readNumber( string& buffer); // Reads a number from input
+    TokenType readLetter( string& buffer); // reads letters from input
+    TokenType checkSymbol(string& buffer); //check the type of symbol in input
   public:
     Tokenizer(const string& str); //constructor
     vector<Token> tokenize(); //tokenizes input string

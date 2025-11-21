@@ -1,14 +1,19 @@
 // Tokenizer Implementation
-#include "C:\Users\greyw\VSC_CodeCreations\Math_engine\include\tokenizer.h"
-#include "C:\Users\greyw\VSC_CodeCreations\Math_engine\include\token.h"
+#include "tokenizer.h"
+#include "token.h"
 #include <cctype>
 #include <string>
 #include <vector>
-#include "tokenizer.h"
 using namespace std;
+
+const string SYMBOL_TOKENS = "+-*/^()";
+const int FUNCTION_TOKEN_SIZE = 8;
+const string FUNCTION_TOKENS[FUNCTION_TOKEN_SIZE] = {"sin", "cos", "tan", "log", "ln", "sqrt",
+                                 "abs", "exp"};
 
 Tokenizer::Tokenizer(const string& str) : input(str), pos(0) {}
 
+//view members
 char Tokenizer::peek() {
   if (pos < input.size()) return input[pos];
   return '\0';
@@ -23,6 +28,7 @@ void Tokenizer::skipWhiteSpace() {
   while (isspace(peek())) get();
 }
 
+//read memembers
 TokenType Tokenizer::readNumber(string& buffer) {
   buffer.clear();
   buffer.push_back(get());
@@ -87,6 +93,7 @@ TokenType Tokenizer::checkSymbol(string& buffer)
   }
 }
 
+//tokenizer
 vector<Token> Tokenizer::tokenize() {
   vector<Token> tokens;
   char currentChar;
@@ -97,22 +104,23 @@ vector<Token> Tokenizer::tokenize() {
   {
     skipWhiteSpace();
     currentChar = peek();
-    if (isdigit(peek()) || peek() == '.')
+    if (isdigit(currentChar) || currentChar == '.')
     {
       type = readNumber(buffer);
       tokens.push_back(Token(type, buffer));
-    }
-    if (isalpha(peek()))
-    {
+    } else if (isalpha(currentChar)) {
       type = readLetter(buffer);
       tokens.push_back(Token(type, buffer));
 
-    }
-    if (SYMBOL_TOKENS.find(peek()) != string::npos)
-    {
+    } else if (SYMBOL_TOKENS.find(currentChar) != string::npos) {
       type = checkSymbol(buffer);
       tokens.push_back(Token(type, buffer));
+    } else {
+      buffer.clear();
+      buffer.push_back(get());
+      tokens.push_back(Token(TokenType::UNKNOWN, buffer));
     }
   }
-  tokens.push_back(Token(TokenType::END, buffer));
+  tokens.push_back(Token(TokenType::END, ""));
+  return tokens;
 }

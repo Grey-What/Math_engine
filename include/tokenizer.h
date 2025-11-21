@@ -7,10 +7,9 @@
 #include "token.h"
 using namespace std;
 
-extern const int FUNCTION_TOKEN_SIZE = 8;
-extern const string FUNCTION_TOKENS[FUNCTION_TOKEN_SIZE] = {"sin", "cos", "tan", "log", "ln", "sqrt",
-                                 "abs", "exp"};
-extern const string SYMBOL_TOKENS = "+-*/^()";
+extern const int FUNCTION_TOKEN_SIZE;
+extern const string FUNCTION_TOKENS[];
+extern const string SYMBOL_TOKENS;
 
 class Tokenizer
 {

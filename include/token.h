@@ -26,7 +26,7 @@ struct Token
   TokenType type;
   string text;
 
-  Token(TokenType t, string& s) : type(t), text(s) {}
+  Token(TokenType t, const string& s) : type(t), text(s) {}
 };
 
 

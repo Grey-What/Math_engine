@@ -21,7 +21,7 @@ class Tokenizer
     void skipWhiteSpace();
     int readNumber( string& buffer);
     int readLetter( string& buffer);
-    int checkSymbol( string& buffer);
+    int checkSymbol();
 
   public:
     Tokenizer(const string& str); //constructor

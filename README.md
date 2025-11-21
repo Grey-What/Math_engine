@@ -13,3 +13,79 @@ This repository will contain an math engine to enforce my gained knowledge of c+
 9. Entend
 
 
+### File structure:
+`graphsql
+math-engine/
+│
+├─ include/                # Header files
+│   ├─ token.h             # TokenType enum and Token struct
+│   ├─ tokenizer.h         # Tokenizer class declaration
+│   ├─ ast.h               # AST Node base class & derived classes
+│   ├─ parser.h            # Parser class declaration
+│   └─ evaluator.h         # Evaluator functions/class
+│
+├─ src/                    # Implementation files
+│   ├─ tokenizer.cpp       # Tokenizer implementation
+│   ├─ parser.cpp          # Parser implementation
+│   ├─ ast.cpp             # AST Node methods (if needed)
+│   └─ evaluator.cpp       # Evaluator implementation
+│
+├─ tests/                  # Unit tests (optional but recommended)
+│   └─ tokenizer_test.cpp
+│
+├─ main.cpp                # Entry point; simple REPL or test code
+├─ CMakeLists.txt          # If using CMake for building (optional)
+└─ README.md               # GitHub project description
+
+`
+
+## Phase 1:
+1. Define token list
+2. define tokenization rules
+3. define grammar
+4. define recursive-descent parser structure
+
+
+#### Token list
+
+| Token Type      | Example(s)     | Notes                                     |
+| --------------- | -------------- | ----------------------------------------- |
+| **NUMBER**      | `3`, `12.5`    | All numeric literals                      |
+| **VARIABLE**    | `x`, `y`       | Single-letter or multi-letter identifiers |
+| **OP_PLUS**     | `+`            | Addition                                  |
+| **OP_MINUS**    | `-`            | Subtraction                               |
+| **OP_MUL**      | `*`            | Multiplication                            |
+| **OP_DIV**      | `/`            | Division                                  |
+| **OP_POW**      | `^`            | Exponentiation                            |
+| **LPAREN**      | `(`            | Left parenthesis                          |
+| **RPAREN**      | `)`            | Right parenthesis                         |
+| **FUNCTION**    | `sin`, `cos`   | Any recognized function name              |
+| **END**         | *none*         | Signal end of input                       |
+| **UNKNOWN/ERR** | any other char | Optional for error handling               |
+
+
+#### Grammar:
+expression → term { (+|-) term }
+term       → factor { (*|/) factor }
+factor     → unary { ^ unary }
+unary      → (+|-) unary | primary
+primary    → NUMBER | VARIABLE | FUNCTION ('expression ')' | '(' expression ')'
+
+#### AST structure:
+Node types and children direction:
+  1. BinaryOpNode -> Left and right
+  2. UnaryOpNode -> one child
+  3. FunctionNode -> one child
+  4. VariableNode -> leaf
+  5. ConstantNode -> leaf
+
+#### Blueprint:
+  1. Input → sequence of characters
+  2. Tokenizer → converts characters to tokens
+  3. Parser → consumes tokens according to grammar, builds AST
+  4. AST → used for evaluation & differentiation
+
+---
+## Phase 2:
+1. Defined tokens in token.h
+2. Tokenizer class interface and implementation

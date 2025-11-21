@@ -8,6 +8,8 @@
 using namespace std;
 
 const string SINGLE_CHAR_TOKENS = "+-*/^()";
+const string FUNCTION_TOKENS[8] = {"sin", "cos", "tan", "log", "ln", "sqrt", ...
+                                 "abs", "exp"};
 class Tokenizer
 {
   private:
@@ -22,7 +24,7 @@ class Tokenizer
     int checkSymbol( string& buffer);
 
   public:
-    Tokenizer(const string& str);
+    Tokenizer(const string& str); //constructor
     vector<Token> tokenize(); //tokenizes input string
 
 };

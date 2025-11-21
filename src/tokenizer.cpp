@@ -50,6 +50,40 @@ TokenType Tokenizer::readLetter(string& buffer) {
   return TokenType::VARIABLE;
 }
 
+TokenType checkSymbol() {
+  char c = get();
+  buffer.clear();
+  buffer.push_back(c);
+
+  switch (c)
+  {
+    case '+':
+      return TokenType::OP_PLUS;
+      break;
+    case '-':
+      return TokenType::OP_MINUS;
+      break;
+    case '*':
+      return TokenType::OP_MUL;
+      break;
+    case '/':
+      return TokenType::OP_DIV;
+      break;
+    case '^':
+      return TokenType::OP_POW;
+      break;
+    case '(':
+      return TokenType::LPAREN;
+      break;
+    case ')':
+      return TokenType::RPAREN;
+      break;
+    default:
+      return TokenType::UNKNOWN;
+      break;
+  }
+}
+
 vector<Token> Tokenizer::tokenize() {
   vector<Token> tokens;
   char currentChar;
@@ -71,10 +105,10 @@ vector<Token> Tokenizer::tokenize() {
       tokens.push_back(Token(type, buffer));
 
     }
-    if (SINGLE_CHAR_TOKENS.find(peek()) != string::npos)
+    if (SYMBOL_TOKENS.find(peek()) != string::npos)
     {
-      type = checkSymbols();
-      tokens.push_back(Token(static_cast<TokenType>(type), buffer));
+      type = checkSymbol();
+      tokens.push_back(Token(type, buffer));
     }
   }
   tokens.push_back(Token(TokenType::END, buffer));

@@ -36,6 +36,14 @@
   `bash
   ./vcpkg install gtest
   `
+## Building and Running Tests
+  ```bash
+    # From project root
+    cmake -B build -DCMAKE_TOOLCHAIN_FILE=C:/Users/greyw/VSC_CodeCreations/Math_engine/vcpkg/scripts/buildsystems/vcpkg.cmake
+    cmake --build build
 
-
+    # Run tests
+    cd build
+    ctest -C Debug
+  ```
 

@@ -10,7 +10,7 @@ This repository will contain an math engine to enforce my gained knowledge of c+
 6. Symbolic Differentiation
 7. REPL Interface and Usability
 8. Testing. cleaning
-9. Entend
+9. Extend
 
 
 ### File structure:
@@ -61,7 +61,7 @@ math-engine/
 | **RPAREN**      | `)`            | Right parenthesis                         |
 | **FUNCTION**    | `sin`, `cos`   | Any recognized function name              |
 | **END**         | *none*         | Signal end of input                       |
-| **UNKNOWN/ERR** | any other char | Optional for error handling               |
+| **UNKNOWN/ERR** | any other char | For error handling               |
 
 
 #### Grammar:
@@ -86,6 +86,8 @@ Node types and children direction:
   4. AST → used for evaluation & differentiation
 
 ---
-## Phase 2:
+## Phase 2: Tokenizer
 1. Defined tokens in token.h
-2. Tokenizer class interface and implementation
+2. Tokenizer class interface and implementation in tokenizer.cpp/h
+
+## Phase 3: Parser

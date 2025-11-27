@@ -23,7 +23,7 @@ private:
     ASTNode* parsePrimary();    // Handles numbers, variables, functions, parentheses
 
 public:
-    Parser(const std::vector<Token>& t);
+    Parser(const vector<Token>& t);
     ASTNode* parse();                     // Entry point, returns root of AST
 };
 

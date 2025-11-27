@@ -86,8 +86,37 @@ Node types and children direction:
   4. AST → used for evaluation & differentiation
 
 ---
-## Phase 2: Tokenizer
+## Phase 2:
+
+### Tokenizer
+  - Input: Raw data.
+  - Output: Vector of tokens
+#### Goal:
+  Accepts raw input data and tokenize it into a vector containing ordered indivual tokens.
+
 1. Defined tokens in token.h
 2. Tokenizer class interface and implementation in tokenizer.cpp/h
 
-## Phase 3: Parser
+---
+#### Parser
+Recursive Descent Parser
+  - Input: Vector of tokens
+  - Output: AST
+#### Goal:
+Accepts Tokens and construct Abstract Syntax Tree (will be refered to as AST) and encodes operator precedence and grouping of expressions for simplified evaluation or transformation.
+
+#### Purpose:
+  - Rendering of visuals
+  - Evaluate expressions
+  - do symbolic manipulation
+  - Posibble symbolic manipulation
+  - Export
+
+
+#### Roadmap:
+  Stage 1: Basic arithmetic
+  Stage 2: Exponents
+  Stage 3: Functions
+  Stage 4: Pretty Printing
+  Stage 5: Advance Math constructs
+

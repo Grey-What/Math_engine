@@ -3,14 +3,15 @@ This repository will contain an math engine to enforce my gained knowledge of c+
 
 ### Phases of development:
 1. Project Foundations / Design
-2. Tokenizer
-3. Parser and grammar
-4. AST design
-5. Evaluation Engine
-6. Symbolic Differentiation
-7. REPL Interface and Usability
-8. Testing. cleaning
-9. Extend
+2. AST design:
+    - Tokenizer
+    - Parser and grammar
+3. Visualizer Implementation
+4. Evaluation Engine
+5. Symbolic Differentiation
+6. REPL Interface and Usability
+7. Testing. cleaning
+8. Extend
 
 
 ### File structure:
@@ -44,6 +45,7 @@ math-engine/
 2. define tokenization rules
 3. define grammar
 4. define recursive-descent parser structure
+5. AST design
 
 
 #### Token list
@@ -88,7 +90,7 @@ Node types and children direction:
 ---
 ## Phase 2:
 
-### Tokenizer
+### 1. Tokenizer
   - Input: Raw data.
   - Output: Vector of tokens
 #### Goal:
@@ -98,7 +100,7 @@ Node types and children direction:
 2. Tokenizer class interface and implementation in tokenizer.cpp/h
 
 ---
-#### Parser
+#### 2. Parser
 Recursive Descent Parser
   - Input: Vector of tokens
   - Output: AST

@@ -30,12 +30,31 @@ void Tokenizer::skipWhiteSpace() {
 
 //read memembers
 TokenType Tokenizer::readNumber(string& buffer) {
+  char nextChar;
+  char intialChar = get();
+  bool decimalCheck = false;
+
   buffer.clear();
-  buffer.push_back(get());
-  while (isdigit(peek()) || peek() == '.')
+  buffer.push_back(intialChar);
+
+  if (intialChar == '.') decimalCheck = true;
+
+  nextChar = peek();
+  while (isdigit(nextChar) || nextChar == '.')
   {
+    if (nextChar == '.') {
+      if (decimalCheck) break;
+      decimalCheck = true;
+    }
+
     buffer.push_back(get());
+    nextChar = peek();
   }
+  if (buffer == ".") {
+    //single dot is not a number
+    return TokenType::UNKNOWN;
+  }
+
   return TokenType::NUMBER;
 }
 
